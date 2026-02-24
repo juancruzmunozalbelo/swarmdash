@@ -14,9 +14,13 @@
   <a href="https://github.com/juancruzmunozalbelo/swarmdash/stargazers"><img src="https://img.shields.io/github/stars/juancruzmunozalbelo/swarmdash?style=social" alt="Stars"></a>
   <img src="https://img.shields.io/badge/Vanilla-HTML%2FCSS%2FJS-orange" alt="Vanilla">
   <img src="https://img.shields.io/badge/Zero-Dependencies-green" alt="Zero Dependencies">
+  <img src="https://img.shields.io/badge/Status-Open_Alpha-orange" alt="Open Alpha">
 </p>
 
 ---
+
+> [!WARNING]
+> **Open Alpha** — SwarmDash is in active development. UI and API contracts may change. Feedback and contributions welcome!
 
 > 🔗 **SwarmDash is the dashboard for [SwarmClaw](https://github.com/juancruzmunozalbelo/swarmclaw)** — the autonomous multi-agent swarm control plane. They work together: SwarmClaw orchestrates AI agents, SwarmDash visualizes everything in real time.
 
