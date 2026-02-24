@@ -72,9 +72,11 @@ SwarmDash polls these endpoints:
 | Endpoint | Method | Description |
 |---|---|---|
 | `/api/state` | GET | Full swarm state (agents, tasks, metrics) |
-| `/api/metrics` | GET | Runtime counters and SLOs |
-| `/api/kanban/sync` | POST | Sync Kanban lanes |
-| `/api/watchdog` | POST | Trigger watchdog check |
+| `/api/lanes/reconcile` | POST | Sync and reconcile agent lanes |
+| `/api/watchdog/run` | POST | Trigger manual watchdog check |
+| `/api/runtime/reset` | POST | Reset runtime metric counters |
+| `/api/todo/create` | POST | Create a new Kanban task |
+| `/api/todo/clear` | POST | Clear completed or all tasks |
 
 ## 📁 Project Structure
 
@@ -83,6 +85,7 @@ swarmdash/
 ├── index.html      # Main dashboard page
 ├── style.css       # Olympus theme styles
 ├── app.js          # Dashboard logic, API polling, Kanban
+├── .gitignore
 ├── docs/
 │   └── screenshot.png
 ├── LICENSE
