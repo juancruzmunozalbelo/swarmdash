@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwarmDash — AI Agent Orchestration Dashboard</title>
+    <meta name="description"
+        content="Real-time control panel for autonomous AI agent swarms with circuit breakers, Kanban, and SLO monitoring.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f0f4f8;
+            --surface: #ffffff;
+            --surface2: #faf6ee;
+            --text: #2c3e50;
+            --muted: #7f8c8d;
+            --dim: #bbb;
+            --gold: #c8a84e;
+            --gold-dark: #a67c3d;
+            --cream: #fdf5e6;
+            --blue: #3498db;
+            --green: #27ae60;
+            --red: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--gold-dark);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+            border-bottom: 2px solid rgba(200, 168, 78, .2);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            color: var(--muted);
+            margin: 12px 0 8px;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        .hero .sub {
+            font-size: 14px;
+            color: var(--dim);
+            margin-bottom: 32px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-badges img {
+            height: 22px;
+        }
+
+        .hero-screenshot {
+            max-width: 900px;
+            width: 100%;
+            border-radius: 12px;
+            margin: 0 auto;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .12), 0 0 0 1px rgba(200, 168, 78, .2);
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            transition: all .2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200, 168, 78, .3);
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            text-decoration: none;
+        }
+
+        .features {
+            max-width: 960px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: var(--gold-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid rgba(200, 168, 78, .15);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+        }
+
+        .feature-card .icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-family: 'Cinzel', serif;
+            color: var(--gold-dark);
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .install {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .install h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--gold-dark);
+        }
+
+        .install pre {
+            background: var(--surface);
+            border: 1px solid rgba(0, 0, 0, .08);
+            border-radius: 10px;
+            padding: 20px 24px;
+            text-align: left;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .install code .comment {
+            color: var(--dim);
+        }
+
+        .install code .cmd {
+            color: var(--gold-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--dim);
+            font-size: 13px;
+            border-top: 1px solid rgba(0, 0, 0, .06);
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <h1>&#127963; SwarmDash</h1>
+        <p class="tagline">Real-time control panel for autonomous AI agent swarms.</p>
+        <p class="sub">Circuit breakers, Kanban, SLO monitoring — zero dependencies.</p>
+
+        <div class="hero-badges">
+            <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
+            <img src="https://img.shields.io/badge/Vanilla-HTML%2FCSS%2FJS-orange" alt="Vanilla">
+            <img src="https://img.shields.io/badge/Zero-Dependencies-green" alt="Zero Dependencies">
+        </div>
+
+        <div class="cta-row">
+            <a href="https://github.com/juancruzmunozalbelo/swarmdash" class="btn btn-primary">&#11088; View on
+                GitHub</a>
+            <a href="https://github.com/juancruzmunozalbelo/swarmdash/archive/refs/heads/main.zip"
+                class="btn btn-secondary">&#8615; Download ZIP</a>
+        </div>
+
+        <img src="screenshot.png" alt="SwarmDash Dashboard" class="hero-screenshot">
+    </section>
+
+    <section class="features">
+        <h2>Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">&#127963;</div>
+                <h3>Agent Visualization</h3>
+                <p>Pixel-art map of your agent swarm with real-time status. Each god represents an autonomous agent.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128260;</div>
+                <h3>Circuit Breakers</h3>
+                <p>Visual health indicators (closed/open/half-open) to prevent cascading failures across agents.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128196;</div>
+                <h3>Kanban Board</h3>
+                <p>Track tasks across Backlog, WIP, and Done lanes. Sync with your agent runtime.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128202;</div>
+                <h3>Runtime Metrics</h3>
+                <p>SLO monitoring, error budgets, and performance counters updated in real time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128680;</div>
+                <h3>Incident Runbook</h3>
+                <p>Log incidents, track resolution, and export reports with one click.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#127919;</div>
+                <h3>Zero Dependencies</h3>
+                <p>Pure HTML, CSS, and JavaScript. No build step, no node_modules. Just open and go.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="install">
+        <h2>Get Started</h2>
+        <pre><code><span class="comment"># Clone the repo</span>
+<span class="cmd">git clone https://github.com/juancruzmunozalbelo/swarmdash.git</span>
+<span class="cmd">cd swarmdash</span>
+
+<span class="comment"># Serve with any static server</span>
+<span class="cmd">python3 -m http.server 8888</span>
+
+<span class="comment"># Open http://localhost:8888</span></code></pre>
+    </section>
+
+    <footer>
+        <p>Built by <a href="https://github.com/juancruzmunozalbelo">Juan Cruz Muñoz Albelo</a> &middot; MIT License
+            &middot; &#9889; From Mount Olympus</p>
+    </footer>
+</body>
+
+</html>
