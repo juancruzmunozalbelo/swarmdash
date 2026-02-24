@@ -18,6 +18,8 @@
 
 ---
 
+> 🔗 **SwarmDash is the dashboard for [SwarmClaw](https://github.com/juancruzmunozalbelo/swarmclaw)** — the autonomous multi-agent swarm control plane. They work together: SwarmClaw orchestrates AI agents, SwarmDash visualizes everything in real time.
+
 ## ✨ What is SwarmDash?
 
 **SwarmDash** is a real-time control panel for managing autonomous AI agent swarms. Built with the "Gods of Olympus" theme, it provides visual monitoring of agent status, task progress, error recovery, and system health — all in a single-page dashboard with zero dependencies.
