@@ -95,6 +95,14 @@ swarmdash/
 └── README.md
 ```
 
+## 🌐 Ecosystem
+
+| Project | Description |
+|---|---|
+| [🐾 SwarmClaw](https://github.com/juancruzmunozalbelo/swarmclaw) | Autonomous multi-agent swarm control plane |
+| [🏛️ SwarmDash](https://github.com/juancruzmunozalbelo/swarmdash) | Real-time AI agent dashboard (you are here) |
+| [🖥️ KaizenTerm](https://github.com/juancruzmunozalbelo/kaizen-term) | Multi-agent terminal orchestrator |
+
 ## 🤝 Contributing
 
 Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
